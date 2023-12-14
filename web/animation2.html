@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+    <style>
+        html.body {
+            height: 100%;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            cursor: none;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h3 {
+            z-index: 10;
+            position: absolute;
+            bottom: 1%;
+            opacity: 0.7;
+            right: 2%;
+            font-size: 3em;
+            font-weight: bolder;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: aqua;
+            text-shadow: 5px 5px 10px lightcoral;
+        }
+    </style>
+    <!-- universe -->
+    <style>
+        @keyframes opacity0 {
+
+            from {
+                opacity: 0.2;
+                transform: scale(0.7) rotateZ(10deg);
+            }
+
+            25% {
+                opacity: 1;
+                transform: scale(1) rotateZ(-10deg);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform: scale(0.7) rotateZ(0deg);
+            }
+
+            75% {
+                opacity: 1;
+                transform: scale(1) rotateZ(10deg);
+            }
+
+            to {
+                opacity: 0.2;
+                transform: scale(0.7) rotateZ(10deg);
+            }
+
+        }
+
+        #universe {
+            position: absolute;
+            height: 90%;
+            width: 90%;
+            top: 5%;
+            left: 5%;
+            animation: opacity0 15s linear infinite;
+        }
+
+        #bg0 {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: url("../image/星系.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            opacity: 0.4;
+        }
+
+        .im2 {
+            position: absolute;
+            z-index: 1;
+            height: 20%;
+            opacity: 0.7;
+        }
+
+        @keyframes am {
+            from {
+                transform: translateY(1em);
+            }
+
+            to {
+                transform: translateY(-1em);
+            }
+        }
+
+        #img2 {
+            top: 35%;
+            left: 50%;
+            height: 18%;
+            animation: am ease-in-out 1.5s infinite alternate;
+        }
+
+        #img8 {
+            top: 30%;
+            height: 5%;
+            left: 50%;
+            animation: am ease-in-out 2s infinite alternate;
+        }
+
+        #img4 {
+            top: 43%;
+            height: 10%;
+            left: 66%;
+            animation: am ease-in-out 1.7s infinite alternate;
+        }
+
+        #img7 {
+            top: 35%;
+            height: 8%;
+            left: 38%;
+            animation: am ease-in-out 2.2s infinite alternate;
+        }
+
+        #img5 {
+            top: 27%;
+            height: 16%;
+            left: 70%;
+            animation: am ease-in-out 1.8s infinite alternate;
+        }
+
+        #img3 {
+            top: 15%;
+            height: 20%;
+            left: 20%;
+            animation: am ease-in-out 2.2s infinite alternate;
+        }
+
+        #img6 {
+            top: 60%;
+            height: 15%;
+            left: 45%;
+
+            animation: am ease-in-out 2.1s infinite alternate;
+        }
+
+        #img9 {
+            top: 29%;
+            height: 7%;
+            left: 47%;
+            animation: am ease-in-out 1.6s infinite alternate;
+        }
+
+        #img10 {
+            top: 60%;
+            height: 13%;
+            left: 20%;
+            animation: am ease-in-out 2s infinite alternate;
+        }
+
+        #img11 {
+            top: 51%;
+            height: 2%;
+            left: 72%;
+            animation: am ease-in-out 1.9s infinite alternate;
+        }
+
+        @keyframes opacity {
+            from {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0.2;
+            }
+        }
+        #head {
+            opacity: 0;
+            position: absolute;
+            height: 10%;
+            filter: drop-shadow(1px, 1px, 15px, red);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="universe">
+        <span id="bg0"></span>
+        <img class="im2" id="img2" src="../image/太阳.png">
+        <img class="im2" id="img3" src="../image/土星.png">
+        <img class="im2" id="img4" src="../image/地球.png">
+        <img class="im2" id="img5" src="../image/木星.png">
+        <img class="im2" id="img6" src="../image/天王星.png">
+        <img class="im2" id="img7" src="../image/火星.png">
+        <img class="im2" id="img8" src="../image/水星.png">
+        <img class="im2" id="img9" src="../image/金星.png">
+        <img class="im2" id="img10" src="../image/海王星.png">
+        <img class="im2" id="img11" src="../image/月球.png">
+    </div>
+
+    <a href="animation.html">
+        <h3>Back.</h3>
+    </a>
+
+    <!-- 鼠标 -->
+    <img id="head" src="../image/UFO.png">
+    <!-- bgmusic -->
+    <script src="js/music.js"></script>
+    <script>
+        let hx = 0, hy = 0;
+        let head = document.querySelector('#head');
+        window.addEventListener('mouseover', (e) => {
+            head.style.opacity = 1;
+            head.style.animation = 'opacity 5s linear infinite';
+        })
+        window.addEventListener('mousemove', (e) => {
+            hx = e.x - head.clientWidth / 2;
+            hy = e.y - head.clientHeight / 2;
+        });
+        window.addEventListener('mouseout', (e) => {
+            head.style.opacity = 0;
+            head.style.animation ='';
+        })
+        function move() {
+            head.style.left = hx + 'px';
+            head.style.top = hy + 'px';
+        };
+        setInterval(move, 1);
+    </script>
+
+    <!-- bg -->
+    <script type="type/shader" id="vertex">
+        #version 300 es    
+        layout (location=0) in vec2 point;
+        void main() {
+           gl_Position = vec4(point.x, point.y, 0.0, 1.0);
+        }
+    </script>
+    <script type="type/shader" id="fragment">
+        #version 300 es    
+        precision highp float;
+    
+       float N21(vec2 p) {
+       p = fract(p * vec2(233.34, 851.73));
+          p += dot(p, p + 23.45);
+          return fract(p.x * p.y);
+      }
+    
+      vec2 N22(vec2 p) {
+       float n = N21(p);
+          return vec2(n, N21(p + n));
+      }
+    
+      vec2 getPos(vec2 id, vec2 offset, float iTime) {
+       vec2 n = N22(id + offset);
+          float x = cos(iTime * n.x);
+          float y = sin(iTime * n.y);
+          return vec2(x, y) * 0.4 + offset;
+      }
+    
+      float distanceToLine(vec2 p, vec2 a, vec2 b) {
+       vec2 pa = p - a;
+          vec2 ba = b - a;
+          float t = clamp(dot(pa, ba) / dot(ba, ba), 0., 1.);
+          return length(pa - t * ba);
+      }
+    
+      float getLine(vec2 p, vec2 a, vec2 b, vec2 iResolution) {
+       float distance = distanceToLine(p, a, b);
+          float dx = 15./iResolution.y;
+          return smoothstep(dx, 0., distance) * smoothstep(1.2, 0.3, length(a - b));
+      }
+    
+      float layer(vec2 st, float iTime, vec2 iResolution) {
+          float m = 0.;
+          vec2 gv = fract(st) - 0.5;
+          vec2 id = floor(st);
+          // m = gv.x > 0.4 || gv.y > 0.4 ? 1. : 0.;
+          // vec2 pointPos = getPos(id, vec2(0., 0.));
+          // m += smoothstep(0.05, 0.03, length(gv - pointPos));
+    
+          float dx=15./iResolution.y;
+          // m += smoothstep(-dx,0., abs(gv.x)-.5);
+          // m += smoothstep(-dx,0., abs(gv.y)-.5);
+          // m += smoothstep(dx, 0., length(gv - pointPos)-0.03);
+    
+          vec2 p[9];
+          int i = 0;
+          for (float x = -1.; x <= 1.; x++) {
+              for (float y = -1.; y <= 1.; y++) {
+               p[i++] = getPos(id, vec2(x, y), iTime);
+              }
+          }
+    
+          for (int j = 0; j <= 8; j++) {
+           m += getLine(gv, p[4], p[j], iResolution);
+              vec2 temp = (gv - p[j]) * 20.;
+              m += 1./dot(temp, temp) * (sin(10. * iTime + fract(p[j].x) * 20.) * 0.5 + 0.5);
+    
+          }
+    
+          m += getLine(gv, p[1], p[3], iResolution);
+          m += getLine(gv, p[1], p[5], iResolution);
+          m += getLine(gv, p[3], p[7], iResolution);
+          m += getLine(gv, p[5], p[7], iResolution);
+    
+          // m += smoothstep(0.05, 0.04, length(st - vec2(0., 0.)));
+          return m;
+      }
+       
+      uniform float iTime;
+      uniform vec2 iResolution;
+      out vec4 fragColor;
+      void main()
+      {
+          vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+    
+          float m = 0.;
+    
+          float theta = iTime * 0.1;
+          mat2 rot = mat2(cos(theta), -sin(theta), sin(theta), cos(theta));
+          vec2 gradient = uv;
+          uv = rot * uv;
+    
+          for (float i = 0.; i < 1.0 ; i += 0.25) {
+           float depth = fract(i + iTime * 0.1);
+              m += layer(uv * mix(10., 0.5, depth) + i * 20., iTime, iResolution) * smoothstep(0., 0.2, depth) * smoothstep(1., 0.8, depth);
+          }
+    
+          vec3 baseColor = sin(vec3(3.45, 6.56, 8.78) * iTime * 0.2) * 0.5 + 0.5;
+    
+          vec3 col = (m - gradient.y) * baseColor;
+          // Output to screen
+          fragColor = vec4(col, 1.0);
+      }
+      </script>
+
+    <canvas id="cvs" width="1920" height="1080"></canvas>
+
+    <script src="js/animation3.js"></script>
+</body>
+
+</html>

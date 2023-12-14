@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+    <link rel="stylesheet" href="css/animation.css">
+    <style>
+        body {
+            cursor: none;
+        }
+
+        #tail {
+            position: absolute;
+            opacity: 0;
+            height: 8%;
+            filter: drop-shadow(1px, 1px, 5px, red);
+            z-index: 1;
+        }
+
+        #head {
+            opacity: 0;
+            position: absolute;
+            height: 5%;
+            filter: drop-shadow(1px, 1px, 15px, red);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <span class="bg"></span>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="js/animation2.js"></script>
+
+    <a href="../index.html" style="z-index: 15;">
+        <h3>Back.</h3>
+    </a>
+
+    <div class="sec1" id="section1">
+        <span class="bg1"></span>
+        <a href="animation1.html">
+            <h1 id="h11">混沌漩涡</h1>
+        </a>
+    </div>
+
+    <div class="sec2" id="section2">
+        <span class="bg2"></span>
+        <a href="animation2.html">
+            <h1 id="h12">科幻宇宙</h1>
+        </a>
+    </div>
+
+    <div id="universe">
+        <span id="bg0"></span>
+        <img class="im2" id="img2" src="../image/太阳.png">
+        <img class="im2" id="img3" src="../image/土星.png">
+        <img class="im2" id="img4" src="../image/地球.png">
+        <img class="im2" id="img5" src="../image/木星.png">
+        <img class="im2" id="img6" src="../image/天王星.png">
+        <img class="im2" id="img7" src="../image/火星.png">
+        <img class="im2" id="img8" src="../image/水星.png">
+        <img class="im2" id="img9" src="../image/金星.png">
+        <img class="im2" id="img10" src="../image/海王星.png">
+        <img class="im2" id="img11" src="../image/月球.png">
+    </div>
+
+    <div id="vortex">
+        <span id="bg01"></span>
+    </div>
+    <!-- 鼠标拖尾 -->
+    <img id="tail" src="../image/星际号.svg">
+    <img id="head" src="../image/lock.svg">
+    <script>
+        let tx = 0, ty = 0, vx = 0, vy = 0, hx = 0, hy = 0, deg = 0, count = 0;
+        let tail = document.querySelector('#tail');
+        let head = document.querySelector('#head');
+        window.addEventListener('mouseover', (e) => {
+            tail.style.opacity = 1;
+            head.style.opacity = 1;
+        })
+        window.addEventListener('mousemove', (e) => {
+            hx = e.x - head.clientWidth / 2;
+            hy = e.y - head.clientHeight / 2;
+            tx = e.x - tail.offsetLeft - tail.clientWidth / 2;
+            ty = e.y - tail.offsetTop - tail.clientHeight / 2;
+            deg = Math.atan(ty / tx) / (Math.PI * 2) * 360 + 10;
+            if (tx < 0)
+                deg += 180;
+            count = 0;
+        });
+        window.addEventListener('mouseout', (e) => {
+            tail.style.opacity = 0;
+            head.style.opacity = 0;
+        })
+        function move() {
+            tail.style.transform = `rotate(${deg}deg)`;
+            if (count < 100) {
+                vx += tx / 100;
+                vy += ty / 100;
+            }
+            tail.style.left = vx + 'px';
+            tail.style.top = vy + 'px';
+            head.style.left = hx + 'px';
+            head.style.top = hy + 'px';
+            count++;
+        };
+        setInterval(move, 1);
+    </script>
+
+    <!-- 渐显 -->
+    <script>
+        let sec1 = document.getElementById('section1');
+        let sec2 = document.getElementById('section2');
+        let universe = document.getElementById('universe');
+        let vortex = document.getElementById('vortex');
+        var canvas = document.getElementById('canvas');
+        canvas.style.cssText = "background:#000";
+        universe.style.cssText = "opacity:0";
+        vortex.style.cssText = "opacity:0";
+        sec1.addEventListener('mouseover', function () {
+            vortex.style.cssText = "opacity: 0.8;transition:2s;";
+            canvas.style.cssText = "background:midnightblue;transition:4s";
+        })
+        sec1.addEventListener('mouseout', function () {
+            vortex.style.cssText = "opacity: 0;transition:2s;";
+        })
+        sec2.addEventListener('mouseover', function () {
+            universe.style.cssText = "opacity: 0.8;transition:2s;animation: opacity 10s linear infinite;";
+            canvas.style.cssText = "background:#000;transition:4s;";
+        })
+        sec2.addEventListener('mouseout', function () {
+            universe.style.cssText = "opacity: 0;transition:2s;";
+        })
+    </script>
+    <script src="js/music.js"></script>
+    
+</body>
+</html>

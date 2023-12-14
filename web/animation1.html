@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画作品</title>
+    <link rel="stylesheet" href="css/animation.css">
+    <style>
+        body {
+            overflow: hidden;
+            cursor: none;
+        }
+
+        #vortex {
+            position: absolute;
+            height: 80%;
+            width: 55%;
+            top: 70%;
+            left: 2%;
+        }
+
+        #bg01 {
+            position: absolute;
+            left: 10%;
+            height: 15em;
+            width: 15em;
+            background: url("../image/vortex.png");
+            filter: drop-shadow(0 0 5px blue);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes opacity {
+            from {
+                opacity: 0.2;
+                height: 10%;
+            }
+
+            50% {
+                opacity: 1;
+                height: 20%;
+            }
+
+            to {
+                opacity: 0.2;
+                height: 10%;
+            }
+        }
+
+        #tail {
+            position: absolute;
+            opacity: 0;
+            height: 20%;
+            filter: drop-shadow(1px, 1px, 5px, red);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script src="js/animation.js"></script>
+    <a href="animation.html">
+        <h3>Back.</h3>
+    </a>
+    <!-- <audio src="audio/bg.mp3" autoplay="autoplay" loop="loop"></audio> -->
+    <div id="vortex">
+        <span id="bg01"></span>
+    </div>
+    <!-- 鼠标拖尾 -->
+    <img id="tail" src="../image/仙鹤.svg">
+    <script>
+        let tx = 0, ty = 0, vx = 0, vy = 0, deg = 0, count = 0;
+        let tail = document.querySelector('#tail');
+        window.addEventListener('mouseover', (e) => {
+            tail.style.opacity = 1;
+            tail.style.animation = 'opacity 5s linear infinite';
+        })
+        window.addEventListener('mousemove', (e) => {
+            tx = e.x - tail.offsetLeft - tail.clientWidth / 2;
+            ty = e.y - tail.offsetTop - tail.clientHeight / 2;
+            deg = Math.atan(ty / tx) / (Math.PI * 2) * 360 + 180;
+            if (tx < 0)
+                deg += 180;
+            count = 0;
+        });
+        window.addEventListener('mouseout', (e) => {
+            tail.style.opacity = 0;
+            tail.style.animation = '';
+        })
+        function move() {
+            tail.style.transform = `rotate(${deg}deg)`;
+            if (count < 10) {
+                vx += tx / 10;
+                vy += ty / 10;
+            }
+            tail.style.left = vx + 'px';
+            tail.style.top = vy + 'px';
+            count++;
+        };
+        setInterval(move, 1);
+    </script>
+    <script src="js/music.js"></script>
+</body>
+
+</html>

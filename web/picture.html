@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人相册</title>
+    <link rel="stylesheet" href="css/picture.css">
+</head>
+
+<body>
+    <div class="dhy">
+        <div class="box">
+            <ul class="inbox">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <ol class="mailbox">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cont">
+            <button id="bt1"><h1>个人档案</h1></button>
+            <button id="bt2"><h1>学习心得</h1></button>
+            <button id="bt3"><h1>动画作品</h1></button>
+        </div>
+        <div class="bg">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <a href="../index.html" style="z-index: 15;">
+        <h3>Back.</h3>
+    </a>
+    <canvas id="canvas"></canvas>
+
+    <audio src="audio/way back home.mp3" autoplay loop></audio>
+    <script src="js/picture.js"></script>
+
+    <script>
+        var but1 = document.querySelector('#bt1');
+        var but2 = document.querySelector('#bt2');
+        var but3 = document.querySelector('#bt3');
+        but1.addEventListener('click', function () {
+            location.href = 'record.html';
+        })
+        but2.addEventListener('click', function () {
+            location.href = 'work.html';
+        })
+        but3.addEventListener('click', function () {
+            location.href = 'animation.html';
+        })
+    </script>
+</body>
+
+</html>
